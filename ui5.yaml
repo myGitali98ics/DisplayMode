@@ -1,0 +1,30 @@
+specVersion: "2.5"
+metadata:
+    name: sap.fe.core.fpmExplorer.tableDefault
+type: application
+server:
+    customMiddleware:
+        - name: fiori-tools-proxy
+          afterMiddleware: compression
+          configuration:
+              ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+              ui5:
+                  path:
+                      - /resources
+                      - /test-resources
+                  url: https://ui5.sap.com
+        - name: fiori-tools-appreload
+          afterMiddleware: compression
+          configuration:
+              port: 35729
+              path: webapp
+              delay: 300
+        - name: sap-fe-mockserver
+          beforeMiddleware: compression
+          configuration:
+              mountPath: /
+              services:
+                  urlPath: /sap/fe/core/mock/service
+                  metadataPath: ./webapp/localService/metadata.xml
+                  mockdataPath: ./webapp/localService
+                  watch: true

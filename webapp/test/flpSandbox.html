@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Custom Section on Object Page</title>
+		<script type="text/javascript">
+			window["sap-ushell-config"] = {
+				defaultRenderer: "fiori2",
+				renderers: {
+					fiori2: {
+						componentData: {
+							config: {
+								enableSearch: false
+							}
+						}
+					}
+				},
+				services: {
+					AppState: {
+						config: {
+							transient: false
+						}
+					}
+				},
+				applications: {
+					"DisplayMode-Sample": {
+						additionalInformation: "SAPUI5.Component=sap.fe.core.fpmExplorer.tableDefault",
+						applicationType: "URL",
+						url: "../",
+						title: "Table - Display Mode Sample",
+						description: "Table - Display Mode Sample"
+					}
+				}
+			};
+		</script>
+
+		<script src="../test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+
+		<!-- Bootstrap the UI5 core library -->
+		<script
+			id="sap-ui-bootstrap"
+			src="../resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates"
+			data-sap-ui-async="true"
+			data-sap-ui-preload="async"
+			data-sap-ui-theme="sap_horizon"
+			data-sap-ui-bindingSyntax="complex"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-language="en"
+			data-sap-ui-resourceroots='{
+				"sap.fe.core.fpmExplorer.tableDefault": "./"
+			}'
+			data-sap-ui-flexibilityServices='[{"connector": "SessionStorageConnector"}]'
+		></script>
+
+		<script type="text/javascript">
+			sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt("content"));
+		</script>
+	</head>
+
+	<!-- UI Content -->
+	<body class="sapUiBody" id="content"></body>
+</html>
